@@ -105,6 +105,8 @@ function TodoComposer({ onAdd }) {
     setText("");
   };
 
+  const canAdd = text.trim().length > 0;
+
   return (
     <form className="composer" onSubmit={submit}>
       <label className="sr-only" htmlFor="new-todo">
@@ -115,10 +117,12 @@ function TodoComposer({ onAdd }) {
         className="input"
         value={text}
         onChange={(e) => setText(e.target.value)}
-        placeholder="Type and hit Enter…"
+        placeholder="Write a todo…"
         autoComplete="off"
+        autoFocus
+        aria-label="Todo text"
       />
-      <button className="btn btn-primary" type="submit">
+      <button className="btn btn-primary" type="submit" disabled={!canAdd}>
         Add
       </button>
     </form>
